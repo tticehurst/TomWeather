@@ -1,0 +1,16 @@
+{
+  "name": "tomweather",
+  "version": "1.0.0",
+  "description": "This module aims to be the replacement for the current `currentweather` and `weatherforcast` modules. The module will be configurable to be used as a current weather view, or to show the forecast. This way the module can be used twice to fulfill both purposes.",
+  "main": "TomWeather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cardinal-direction": "^1.1.1"
+  }
+}

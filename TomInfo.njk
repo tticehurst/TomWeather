@@ -1,0 +1,23 @@
+<div style="word-wrap:break-word;">{{data| dump}}</div>
+
+{% if data %}
+  <div class="normal medium flex-row small-gap">
+    <div>
+      <span class="wi wi-strong-wind dimmed"></span>
+
+      <span>
+        {{data.windSpeed | round}}
+        <sup>
+          {{data.windDirection}}
+        </sup>
+      </span>
+    </div>
+
+    <div>
+      <span class="wi dimmed wi-{{ data.nextSunAction }}"></span>
+      <span>
+        {{data.nextSunActionTime}}
+      </span>
+    </div>
+  </div>
+{% endif %}
