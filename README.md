@@ -3,16 +3,19 @@
 ## Install
 
 - Change into your modules directory (Example):
-  `cd ~/MagicMirror/Modules`
+
+  - `cd ~/MagicMirror/Modules`
 
 - Clone the module into that folder:
-  `git clone https://github.com/tticehurst/TomWeather.git`
+
+* `git clone https://github.com/tticehurst/TomWeather.git`
 
 - Change into the new module directory:
-  `cd TomWeather`
+
+  - `cd TomWeather`
 
 - Install the required dependencies for the module:
-  `npm install`
+  - `npm install`
 
 ## Config
 
