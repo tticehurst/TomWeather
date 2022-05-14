@@ -8,7 +8,7 @@
 
 - Clone the module into that folder:
 
-* `git clone https://github.com/tticehurst/TomWeather.git`
+  - `git clone https://github.com/tticehurst/TomWeather.git`
 
 - Change into the new module directory:
 
