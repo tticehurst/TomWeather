@@ -46,7 +46,7 @@ Module.register("TomWeather", {
       this.cloudCover = payload.weatherData.clouds.all;
       this.humidity = payload.weatherData.main.humidity;
 
-      if (payload.weatherData.dt > payload.weatherData.sys.sunrise) {
+      if (moment().isBetween(payload.weatherData.sys.sunrise, payload.weatherData.sys.sunset)) {
         this.nextSunAction = "sunset"
         this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
       } else {
