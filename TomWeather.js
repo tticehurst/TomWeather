@@ -31,24 +31,25 @@ Module.register("TomWeather", {
     if (id === "GetWeatherResult") {
       if (!payload.liveWeatherData) {
         this.weatherData = payload.weatherData;
-        this.using = "Online";
+        this.prefix = "*";
       } else {
         this.weatherData = payload.liveWeatherData;
-        this.using = "Live";
       }
 
       this.windDirection = payload.windDirection;
       this.windSpeed = payload.weatherData.wind.speed;
+      this.weatherTypeID = payload.weatherData.weather[0].id
 
       this.feelsLike = payload.weatherData.main.feels_like;
-      this.temperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp
+      this.outdoorTemperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp;
+      this.indoorTemperature = (payload.liveWeatherData) ? payload.liveWeatherData.value : undefined;
 
-      if (new Date(0).setUTCMilliseconds(payload.weatherData.sys.sunrise) < new Date(0).setUTCMilliseconds(new Date().getTime())) {
+      if (moment().isBetween(payload.weatherData.sys.sunrise, payload.weatherData.sys.sunset)) {
         this.nextSunAction = "sunrise"
-        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunrise).format("hh:mm");
+        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunrise).format("HH:mm");
       } else {
         this.nextSunAction = "sunset"
-        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("hh:mm");
+        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
       }
 
 
@@ -63,21 +64,22 @@ Module.register("TomWeather", {
   getTemplateData() {
     return {
       data: {
-        temperature: this.temperature,
+        outsideTemperature: this.outdoorTemperature,
+        indoorTemperature: this.indoorTemperature,
         windDirection: this.windDirection,
-        indoorData: this.indoorData,
-        charUnit: this.config.unit.toLowerCase() === "metric" ? "c" : "f",
+        degreeSymbol: `°${this.config.unit.toLowerCase() === "metric" ? "c" : "f"}`,
         nextSunAction: this.nextSunAction,
         nextSunActionTime: this.nextSunActionTime,
-        using: this.using,
+        prefix: this.prefix,
         feelsLike: this.feelsLike,
-        windSpeed: this.windSpeed
+        windSpeed: this.windSpeed,
+        weatherTypeID: this.weatherTypeID
       }
     }
   },
 
   getTemplate() {
-    return "TomInfo.njk";
+    return "WeatherInfo.njk";
   },
 
   getScripts() {
@@ -86,11 +88,5 @@ Module.register("TomWeather", {
 
   getStyles() {
     return ["font-awesome.css", "weather-icons.css", "weather.css"];
-  },
-
-  addFilters() {
-    this.nunjucksEnvironment().addFilter("round", (item) => {
-      return Math.floor(parseInt(item));
-    }).bind(this);
   }
 })

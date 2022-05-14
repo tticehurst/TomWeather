@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "cardinal-direction": "^1.1.1"
+    "cardinal-direction": "^1.1.1",
+    "css.gg": "^2.0.0"
   }
 }

@@ -1,49 +1,24 @@
-.TomWeather .weathericon,
-.TomWeather .fa-home {
-  font-size: 75%;
-  line-height: 65px;
-  display: inline-block;
-  transform: translate(0, -3px);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css");
+
+#feels-like{
+  margin-top:5px;
 }
 
-.TomWeather .day {
-  padding-left: 0;
-  padding-right: 25px;
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: nowrap;
 }
-
-.TomWeather .weather-icon {
-  padding-right: 30px;
-  text-align: center;
-}
-
-.TomWeather .min-temp {
-  padding-left: 20px;
-  padding-right: 0;
-}
-
-.TomWeather .precipitation {
-  padding-left: 20px;
-  padding-right: 0;
-}
-
-.TomWeather tr .weathericon {
-  line-height: 25px;
-}
-
-.TomWeather tr.colored .min-temp {
-  color: #bcddff;
-}
-
-.TomWeather tr.colored .max-temp {
-  color: #ff8e99;
-}
-
 
 .flex-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .small-gap {

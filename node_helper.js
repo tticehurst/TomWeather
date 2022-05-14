@@ -20,7 +20,14 @@ module.exports = NodeHelper.create({
 
       this.sendSocketNotification("GetWeatherResult", { weatherData, windDirection, liveWeatherData })
     } else if (notification === "GetIndoor") {
-      let data = (await axios.get("http://192.168.0.43:5000/sensor/000006969f83")).data;
+      let data = undefined;
+
+      try {
+        data = (await axios.get("http://192.168.0.43:5000/sensor/000006969f83")).data;
+      } catch {
+        data = {}
+      }
+
 
       this.sendSocketNotification("GetIndoorResult", data)
     }

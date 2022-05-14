@@ -1,0 +1,48 @@
+{% if data %}
+  <div class="flex-column">
+    <div class="normal medium flex-row small-gap">
+      <div>
+        <span class="wi wi-strong-wind dimmed"></span>
+
+        <span>
+          {{data.windSpeed | round}}
+          <sup>
+            {{data.windDirection}}
+          </sup>
+        </span>
+      </div>
+
+      <div>
+        <span class="wi dimmed wi-{{ data.nextSunAction }}"></span>
+        <span>
+          {{data.nextSunActionTime}}
+        </span>
+      </div>
+    </div>
+
+    <div class="large light flex-row" style="gap: 25px;">
+      <div class="bright">
+        <span class="wi weathericon wi-owm-{{ data.weatherTypeID }}"></span>
+        <span>
+          <span class="dimmed">{{data.prefix}}</span>{{data.outsideTemperature | round}}{{data.degreeSymbol}}
+        </span>
+      </div>
+
+      {% if data.indoorTemperature %}
+        <div class="bright">
+          <span class="bi bi-house"></span>
+          <span>
+            {{data.indoorTemperature | round}}{{data.degreeSymbol}}
+          </span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="normal medium" id="feels-like">
+      <span class="light">
+        Feels like:
+        {{data.feelsLike | round}}{{data.degreeSymbol}}
+      </span>
+    </div>
+  </div>
+{% endif %}
