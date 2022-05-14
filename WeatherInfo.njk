@@ -5,7 +5,7 @@
         <span class="wi wi-strong-wind dimmed"></span>
 
         <span>
-          {{data.windSpeed | round}}
+          {{(data.windSpeed*2.237) | round}}
           <sup>
             {{data.windDirection}}
           </sup>
