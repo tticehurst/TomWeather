@@ -1,4 +1,4 @@
-{% if data %}
+{% if data.outsideTemperature %}
   <div class="flex-column">
     <div class="normal medium flex-row small-gap">
       <div>
@@ -16,6 +16,22 @@
         <span class="wi dimmed wi-{{ data.nextSunAction }}"></span>
         <span>
           {{data.nextSunActionTime}}
+        </span>
+      </div>
+
+      <div>
+        <span class="wi dimmed wi-cloud"></span>
+
+        <span>
+          {{data.cloudCover}}%
+        </span>
+      </div>
+
+      <div>
+        <span class="wi dimmed wi-humidity"></span>
+
+        <span>
+          {{data.humidity}}%
         </span>
       </div>
     </div>

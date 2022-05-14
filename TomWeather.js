@@ -43,6 +43,9 @@ Module.register("TomWeather", {
       this.feelsLike = payload.weatherData.main.feels_like;
       this.outdoorTemperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp;
 
+      this.cloudCover = payload.weatherData.clouds.all;
+      this.humidity = payload.weatherData.main.humidity;
+
       if (payload.weatherData.dt > payload.weatherData.sys.sunrise) {
         this.nextSunAction = "sunset"
         this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
@@ -71,7 +74,9 @@ Module.register("TomWeather", {
         prefix: this.prefix,
         feelsLike: this.feelsLike,
         windSpeed: this.windSpeed,
-        weatherTypeID: this.weatherTypeID
+        weatherTypeID: this.weatherTypeID,
+        cloudCover: this.cloudCover,
+        humidity: this.humidity
       }
     }
   },
