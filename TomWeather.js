@@ -44,14 +44,13 @@ Module.register("TomWeather", {
       this.outdoorTemperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp;
       this.indoorTemperature = (payload.liveWeatherData) ? payload.liveWeatherData.value : undefined;
 
-      if (moment().isBetween(payload.weatherData.sys.sunrise, payload.weatherData.sys.sunset)) {
-        this.nextSunAction = "sunrise"
-        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunrise).format("HH:mm");
-      } else {
+      if (payload.weatherData.dt > payload.weatherData.sys.sunrise) {
         this.nextSunAction = "sunset"
         this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
+      } else {
+        this.nextSunAction = "sunrise"
+        this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunrise).format("HH:mm");
       }
-
 
       this.updateDom(300);
     } else if (id === "GetIndoorResult") {
