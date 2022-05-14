@@ -14,7 +14,7 @@ Module.register("TomWeather", {
       unit: this.config.unit
     });
 
-    this.sendSocketNotification("GetIndoor", {})
+    this.sendSocketNotification("GetIndoor", {});
   },
 
   start() {
@@ -54,7 +54,7 @@ Module.register("TomWeather", {
 
       this.updateDom(300);
     } else if (id === "GetIndoorResult") {
-      this.indoorData = payload;
+      this.indoorTemperature = payload.value;
 
       this.updateDom(300);
     }
