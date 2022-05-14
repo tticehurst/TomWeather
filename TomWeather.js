@@ -42,7 +42,6 @@ Module.register("TomWeather", {
 
       this.feelsLike = payload.weatherData.main.feels_like;
       this.outdoorTemperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp;
-      this.indoorTemperature = (payload.liveWeatherData) ? payload.liveWeatherData.value : undefined;
 
       if (payload.weatherData.dt > payload.weatherData.sys.sunrise) {
         this.nextSunAction = "sunset"

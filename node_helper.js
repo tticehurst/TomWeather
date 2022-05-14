@@ -23,10 +23,8 @@ module.exports = NodeHelper.create({
       try {
         let data = (await axios.get("http://192.168.0.43:5000/sensor/000006969f83")).data;
 
-        console.log(data);
         this.sendSocketNotification("GetIndoorResult", data)
       } catch { }
-
     }
   },
 });
