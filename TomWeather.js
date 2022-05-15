@@ -26,12 +26,6 @@ Module.register("TomWeather", {
     }, 1000);
   },
 
-  updateSunTime(lat, lon) {
-    let now = !this.date ? new Date() : this.date.toDate();
-    let times = SunCalc.getTimes(now, lat, lon);
-    this.sunrise = moment(times.sunrise, "X");
-    this.sunset = moment(times.sunset, "X");
-  },
   socketNotificationReceived(id, payload) {
     if (id === "GetWeatherResult") {
       if (!payload.liveWeatherData) {
