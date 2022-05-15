@@ -25,6 +25,8 @@ module.exports = NodeHelper.create({
 
         this.sendSocketNotification("GetIndoorResult", data)
       } catch { }
+    } else if (notification === "Print") {
+      console.log(payload);
     }
   },
 });

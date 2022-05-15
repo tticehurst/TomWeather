@@ -26,7 +26,12 @@ Module.register("TomWeather", {
     }, 1000);
   },
 
-
+  updateSunTime(lat, lon) {
+    let now = !this.date ? new Date() : this.date.toDate();
+    let times = SunCalc.getTimes(now, lat, lon);
+    this.sunrise = moment(times.sunrise, "X");
+    this.sunset = moment(times.sunset, "X");
+  },
   socketNotificationReceived(id, payload) {
     if (id === "GetWeatherResult") {
       if (!payload.liveWeatherData) {
@@ -35,6 +40,10 @@ Module.register("TomWeather", {
       } else {
         this.weatherData = payload.liveWeatherData;
       }
+
+      let times = SunCalc.getTimes(new Date(), this.config.lat, this.config.lon);
+      let sunriseTime = moment(times.sunrise, "X");
+      let sunsetTime = moment(times.sunset, "X");
 
       this.windDirection = payload.windDirection;
       this.windSpeed = payload.weatherData.wind.speed;
@@ -46,7 +55,7 @@ Module.register("TomWeather", {
       this.cloudCover = payload.weatherData.clouds.all;
       this.humidity = payload.weatherData.main.humidity;
 
-      if (moment().isBetween(payload.weatherData.sys.sunrise, payload.weatherData.sys.sunset)) {
+      if (moment().isBetween(sunriseTime, sunsetTime)) {
         this.nextSunAction = "sunset"
         this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
       } else {
@@ -86,7 +95,7 @@ Module.register("TomWeather", {
   },
 
   getScripts() {
-    return ["moment.js"]
+    return ["moment.js", "suncalc.js"]
   },
 
   getStyles() {
