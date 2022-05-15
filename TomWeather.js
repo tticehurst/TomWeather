@@ -41,10 +41,6 @@ Module.register("TomWeather", {
         this.weatherData = payload.liveWeatherData;
       }
 
-      let times = SunCalc.getTimes(new Date(), this.config.lat, this.config.lon);
-      let sunriseTime = moment(times.sunrise, "X");
-      let sunsetTime = moment(times.sunset, "X");
-
       this.windDirection = payload.windDirection;
       this.windSpeed = payload.weatherData.wind.speed;
       this.weatherTypeID = payload.weatherData.weather[0].id
@@ -55,7 +51,7 @@ Module.register("TomWeather", {
       this.cloudCover = payload.weatherData.clouds.all;
       this.humidity = payload.weatherData.main.humidity;
 
-      if (moment().isBetween(sunriseTime, sunsetTime)) {
+      if (moment().isBetween(moment(payload.weatherData.sys.sunrise, "X"), moment(payload.weatherData.sys.sunset, "X"))) {
         this.nextSunAction = "sunset"
         this.nextSunActionTime = moment.unix(payload.weatherData.sys.sunset).format("HH:mm");
       } else {
@@ -95,7 +91,7 @@ Module.register("TomWeather", {
   },
 
   getScripts() {
-    return ["moment.js", "suncalc.js"]
+    return ["moment.js"]
   },
 
   getStyles() {
