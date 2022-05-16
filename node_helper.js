@@ -11,7 +11,7 @@ module.exports = NodeHelper.create({
       let liveWeatherData = undefined;
 
       try {
-        liveWeatherData = (await axios.get("http://192.168.0.40:5000/sensor/00000698eef5")).data;
+        liveWeatherData = (await axios.get("http://192.168.0.40:5000/sensor/000006962d0f")).data;
       } catch { }
 
       weatherData = (await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${payload.lat}&lon=${payload.lon}&appid=${payload.appID}&units=${payload.unit}`)).data;
