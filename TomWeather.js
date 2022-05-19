@@ -33,6 +33,7 @@ Module.register("TomWeather", {
         this.prefix = "*";
       } else {
         this.weatherData = payload.liveWeatherData;
+        this.prefix = "";
       }
 
       this.windDirection = payload.windDirection;
