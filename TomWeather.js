@@ -42,6 +42,7 @@ Module.register("TomWeather", {
 
       this.feelsLike = payload.weatherData.main.feels_like;
       this.outdoorTemperature = (this.weatherData.main === undefined) ? this.weatherData.value : this.weatherData.main.temp;
+      this.shouldDisplay = this.outdoorTemperature !== undefined;
 
       this.cloudCover = payload.weatherData.clouds.all;
       this.humidity = payload.weatherData.main.humidity;
@@ -76,7 +77,8 @@ Module.register("TomWeather", {
         windSpeed: this.windSpeed,
         weatherTypeID: this.weatherTypeID,
         cloudCover: this.cloudCover,
-        humidity: this.humidity
+        humidity: this.humidity,
+        shouldDisplay: this.shouldDisplay
       }
     }
   },
@@ -91,5 +93,6 @@ Module.register("TomWeather", {
 
   getStyles() {
     return ["font-awesome.css", "weather-icons.css", "weather.css"];
-  }
+  },
+
 })
