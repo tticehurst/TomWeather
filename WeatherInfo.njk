@@ -40,7 +40,7 @@
       <div class="bright">
         <span class="wi weathericon wi-owm-{{ data.weatherTypeID }}"></span>
         <span>
-          <span class="dimmed">{{data.prefix}}</span>{{data.outsideTemperature | round}}{{data.degreeSymbol}}
+          <span class="dimmed">{{data.prefix}}</span>{{data.outsideTemperature }}{{data.degreeSymbol}}
         </span>
       </div>
 
@@ -48,7 +48,7 @@
         <div class="bright">
           <span class="bi bi-house"></span>
           <span>
-            {{data.indoorTemperature | round}}{{data.degreeSymbol}}
+            {{data.indoorTemperature}}{{data.degreeSymbol}}
           </span>
         </div>
       {% endif %}
